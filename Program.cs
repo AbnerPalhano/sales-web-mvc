@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SalesWebMvc.Data;
+using SalesWebMvc.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,8 +11,9 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 var ConnectionString = builder.Configuration.GetConnectionString("SalesWebContext");
 builder.Services.AddDbContext<SalesWebContext>(options => options.UseMySql(ConnectionString, ServerVersion.AutoDetect(ConnectionString)));
 builder.Services.AddScoped<SeedingService>();
-var app = builder.Build();
+builder.Services.AddScoped<SellerService>();
 
+var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
