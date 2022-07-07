@@ -27,11 +27,14 @@ namespace SalesWebMvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Seller seller)
+        public IActionResult Create([Bind("Name,Email,BirthDate,BaseSalary")] Seller seller)
         {
-            _service.Insert(seller);
-
-            return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                _service.Insert(seller);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(seller);
         }
     }
 }

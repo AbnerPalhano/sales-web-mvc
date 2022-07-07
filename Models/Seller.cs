@@ -6,9 +6,12 @@ namespace SalesWebMvc.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
+        [EmailAddress]
         public string Email { get; set; }
         public DateTime BirthDate { get; set; }
+        [Required]
         public double BaseSalary { get; set; }
         public Department Department { get; set; }
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
