@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using SalesWebMvc.Services;
+using SalesWebMvc.Models;
 
 namespace SalesWebMvc.Controllers
 {
-    [Route("[controller]")]
+    //[Route("[controller]")]
     public class SellersController : Controller
     {
         private readonly SellerService _service;
@@ -13,11 +14,24 @@ namespace SalesWebMvc.Controllers
             _service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var list = _service.FindAll();
+            var list = await _service.FindAllAsync();
             return View(list);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Seller seller)
+        {
+            _service.Insert(seller);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

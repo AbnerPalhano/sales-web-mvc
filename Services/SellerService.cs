@@ -11,14 +11,20 @@ namespace SalesWebMvc.Services
             _context = context;
         }
 
-        /*public async Task<List<Seller>> FindAllAsync()
+        public async Task<List<Seller>> FindAllAsync()
         {
             return await Task.Run(() => _context.Seller.ToList());
-        }*/
+        }
 
         public List<Seller> FindAll()
         {
             return _context.Seller.ToList();
+        }
+
+        public void Insert(Seller seller)
+        {
+            _context.Add(seller);
+            _context.SaveChanges();
         }
     }
 }
