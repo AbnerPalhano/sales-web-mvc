@@ -69,8 +69,8 @@ namespace SalesWebMvc.Migrations
                     b.Property<double>("BaseSalary")
                         .HasColumnType("double");
 
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime(6)");
+                    b.Property<DateOnly>("BirthDate")
+                        .HasColumnType("date");
 
                     b.Property<int?>("DepartmentId")
                         .HasColumnType("int");

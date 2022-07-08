@@ -23,6 +23,7 @@ namespace SalesWebMvc.Services
 
         public void Insert(Seller seller)
         {
+            System.Console.WriteLine($"\n[{DateTime.Now}] seller {seller.Email} added.\n");
             _context.Add(seller);
             _context.SaveChanges();
         }

@@ -44,8 +44,8 @@ namespace SalesWebMvc.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("double");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime(6)");
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
 
                     b.Property<int?>("SellerId")
                         .HasColumnType("int");
